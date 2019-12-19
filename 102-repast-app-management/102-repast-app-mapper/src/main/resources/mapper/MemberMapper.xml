@@ -30,4 +30,7 @@
     <result column="session_key" property="sessionKey" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
   </resultMap>
+  <update id="updateByOpenId">
+        update ums_member set token=#{token} where open_id=#{openId}
+  </update>
 </mapper>

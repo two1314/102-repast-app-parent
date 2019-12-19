@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+
 /**
  * @Company AAA软件教育
  * @Author Seven Lee
@@ -27,29 +29,40 @@ public class MemberService extends BaseService<Member> {
     }
 
     /**
-     * @author Seven Lee
-     * @description
-     *      执行登录操作
-     * @param [member]
-     * @date 2019/12/19
+     * @param
      * @return java.lang.Boolean
-     * @throws 
-    **/
+     * @throws
+     * @author Seven Lee
+     * @description 执行登录操作
+     * @date 2019/12/19
+     **/
     public Boolean doLogin(Member member) {
-        if(StringUtil.isNotEmpty(member.getOpenId())) {
-            try {
-                // 随机token
-                String token = IDUtil.getUUID() + member.getOpenId();
-                member.setToken(token);
-                Integer saveResult = super.save(member);
-                if(saveResult > 0) {
-                    // 说明添加成功
-                    return true;
+        // 随机token
+        String token = IDUtil.getUUID() + member.getOpenId();
+
+
+        if (StringUtil.isNotEmpty(member.getOpenId())) {
+            Member one = memberMapper.selectOne(member);
+            member.setToken(token);
+            if (one!=null) {
+
+                Integer saveResult = memberMapper.updateByOpenId(member);
+                return saveResult > 0;
+            } else {
+                try {
+//                member.setToken(token);
+                    Integer saveResult = super.save(member);
+                    if (saveResult > 0) {
+                        // 说明添加成功
+                        return true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
+
+
         return false;
     }
 
