@@ -1,9 +1,12 @@
 package com.aaa.lee.app.fallback;
 
 import com.aaa.lee.app.api.IRepastService;
+import com.aaa.lee.app.model.Coupon;
 import com.aaa.lee.app.model.Member;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @Company AAA软件教育
@@ -19,8 +22,13 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
         IRepastService repastService = new IRepastService() {
 
             @Override
-            public Boolean doLogin(Member member) {
+            public String doLogin(Member member) {
                 System.out.println("测试登录熔断数据");
+                return null;
+            }
+
+            @Override
+            public List<Coupon> selectCoupon(String token) {
                 return null;
             }
         };

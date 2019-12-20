@@ -1,11 +1,14 @@
 package com.aaa.lee.app.api;
 
 import com.aaa.lee.app.fallback.RepastFallback;
+import com.aaa.lee.app.model.Coupon;
 import com.aaa.lee.app.model.Member;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @Company AAA软件教育
@@ -22,12 +25,20 @@ public interface IRepastService {
      * @author Seven Lee
      * @description
      *      登录熔断数据
-     * @param [member]
+     * @param member
      * @date 2019/12/19
      * @return java.lang.Boolean
      * @throws 
     **/
     @PostMapping("/doLogin")
-    Boolean doLogin(@RequestBody Member member);
+    String doLogin(@RequestBody Member member);
+
+    /**
+     * 通过token查询会员熔断
+     * @param token
+     * @return
+     */
+    @PostMapping("/selectCoupon")
+    public List<Coupon> selectCoupon(@RequestParam("token")String token);
 
 }

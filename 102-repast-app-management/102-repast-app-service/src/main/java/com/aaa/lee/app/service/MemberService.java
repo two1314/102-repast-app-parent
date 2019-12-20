@@ -36,7 +36,7 @@ public class MemberService extends BaseService<Member> {
      * @description 执行登录操作
      * @date 2019/12/19
      **/
-    public Boolean doLogin(Member member) {
+    public String doLogin(Member member) {
         // 随机token
         String token = IDUtil.getUUID() + member.getOpenId();
 
@@ -45,16 +45,17 @@ public class MemberService extends BaseService<Member> {
             Member one = memberMapper.selectOne(member);
             member.setToken(token);
             if (one!=null) {
-
                 Integer saveResult = memberMapper.updateByOpenId(member);
-                return saveResult > 0;
+                if (saveResult>0){
+                    return token;
+                }
             } else {
                 try {
 //                member.setToken(token);
                     Integer saveResult = super.save(member);
                     if (saveResult > 0) {
                         // 说明添加成功
-                        return true;
+                        return token;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -63,7 +64,8 @@ public class MemberService extends BaseService<Member> {
         }
 
 
-        return false;
+        return null;
     }
+
 
 }

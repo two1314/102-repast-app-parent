@@ -48,7 +48,7 @@ public class MemberController {
         dataMap.get("region");
     }*/
     @PostMapping("/doLogin")
-    public Boolean doLogin(@RequestBody Member member) {
+    public String doLogin(@RequestBody Member member) {
         // 调用service
         return memberService.doLogin(member);
     }
