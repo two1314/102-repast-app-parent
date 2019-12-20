@@ -7,7 +7,9 @@ package com.aaa.lee.app.status;
  * @Description
  **/
 public enum  StatusEnum {
-
+    /**
+     * 状态枚举
+     */
     SUCCESS("1", "操作成功"),
     FAILED("2", "操作失败"),
     EXIST("3", "数据存在"),

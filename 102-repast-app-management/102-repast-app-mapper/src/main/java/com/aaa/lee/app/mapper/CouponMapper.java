@@ -18,4 +18,5 @@ public interface CouponMapper extends Mapper<Coupon> {
      * @return
      */
     public List<Coupon>selectByToken(String token);
+
 }

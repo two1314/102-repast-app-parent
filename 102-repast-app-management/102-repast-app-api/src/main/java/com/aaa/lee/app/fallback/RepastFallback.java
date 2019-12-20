@@ -7,6 +7,7 @@ import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Company AAA软件教育
@@ -19,7 +20,8 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
 
     @Override
     public IRepastService create(Throwable throwable) {
-        IRepastService repastService = new IRepastService() {
+
+        return new IRepastService() {
 
             @Override
             public String doLogin(Member member) {
@@ -29,9 +31,21 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
 
             @Override
             public List<Coupon> selectCoupon(String token) {
+                System.out.println("测试优惠券熔断");
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> selectIntegration(String token) {
+                System.out.println("测试会员积分熔断");
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> updateCoupon(Integer useCount, Long id, String token) {
+                System.out.println("测试修改会员优惠券");
                 return null;
             }
         };
-        return repastService;
     }
 }

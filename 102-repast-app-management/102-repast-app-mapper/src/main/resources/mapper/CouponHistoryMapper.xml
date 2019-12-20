@@ -18,5 +18,7 @@
     <result column="order_id" property="orderId" jdbcType="BIGINT" />
     <result column="order_sn" property="orderSn" jdbcType="VARCHAR" />
   </resultMap>
-
+<update id="updateByMemberIdAndCouponId">
+  update sms_coupon_history set use_status=1 where member_id=#{memberId} and coupon_id=#{couponId}
+</update>
 </mapper>
