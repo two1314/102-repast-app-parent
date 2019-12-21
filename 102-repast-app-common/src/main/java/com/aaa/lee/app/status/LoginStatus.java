@@ -7,6 +7,9 @@ package com.aaa.lee.app.status;
  * @Description
  **/
 public enum  LoginStatus {
+    /**
+     * 登录状态枚举
+     */
 
     LOGIN_SUCCESS("200", "登录成功"),
     LOGIN_FAILED("400", "登录失败"),

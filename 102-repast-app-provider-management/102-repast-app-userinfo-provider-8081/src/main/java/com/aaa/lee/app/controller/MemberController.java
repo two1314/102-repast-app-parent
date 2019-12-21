@@ -5,6 +5,7 @@ import com.aaa.lee.app.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -48,9 +49,21 @@ public class MemberController {
         dataMap.get("region");
     }*/
     @PostMapping("/doLogin")
-    public String doLogin(@RequestBody Member member) {
+    public Map<String, Object> doLogin(@RequestBody Member member) {
         // 调用service
         return memberService.doLogin(member);
     }
+
+    /**
+     * 通过token返回用户对象
+     * @param token
+     * @return
+     */
+    @PostMapping("/getUser")
+    public Member getUser(@RequestParam("token") String token) {
+
+        return memberService.getUser(token);
+    }
+
 
 }

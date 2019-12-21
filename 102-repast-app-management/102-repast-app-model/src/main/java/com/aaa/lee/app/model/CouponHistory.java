@@ -6,14 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author sjx
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
 @Table(name = "sms_coupon_history")
-public class CouponHistory {
+public class CouponHistory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

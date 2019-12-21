@@ -24,7 +24,7 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
         return new IRepastService() {
 
             @Override
-            public String doLogin(Member member) {
+            public Map<String,Object> doLogin(Member member) {
                 System.out.println("测试登录熔断数据");
                 return null;
             }
@@ -44,6 +44,18 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
             @Override
             public Map<String, Object> updateCoupon(Integer useCount, Long id, String token) {
                 System.out.println("测试修改会员优惠券");
+                return null;
+            }
+
+            @Override
+            public Member getUser(String token) {
+                System.out.println("测试返回用户");
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> selectIntegrationHis(String token) {
+                System.out.println("测试用户使用积分记录");
                 return null;
             }
         };

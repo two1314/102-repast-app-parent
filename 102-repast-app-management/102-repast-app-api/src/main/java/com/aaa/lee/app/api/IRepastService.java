@@ -32,7 +32,7 @@ public interface IRepastService {
      * @throws 
     **/
     @PostMapping("/doLogin")
-    String doLogin(@RequestBody Member member);
+    Map<String,Object> doLogin(@RequestBody Member member);
 
     /**
      * 通过token查询优惠券熔断
@@ -60,5 +60,22 @@ public interface IRepastService {
      */
     @PostMapping("/updateCoupon")
     public Map<String, Object> updateCoupon(@RequestParam("useCount")Integer useCount, @RequestParam("id") Long id, @RequestParam("token")String token);
+
+    /**
+     * 通过token返回用户对象
+     * @param token
+     * @return
+     */
+    @PostMapping("/getUser")
+    Member getUser(@RequestParam("token") String token);
+
+
+    /**
+     * 查询用户使用积分记录
+     * @param token
+     * @return
+     */
+    @PostMapping("/selectIntegrationHis")
+    public Map<String,Object>selectIntegrationHis(@RequestParam("token") String token);
 
 }

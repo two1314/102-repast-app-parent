@@ -1,10 +1,14 @@
 package com.aaa.lee.app.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author sjx
+ */
 @Table(name = "ums_integration_change_history")
-public class IntegrationHis {
+public class IntegrationHis implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
