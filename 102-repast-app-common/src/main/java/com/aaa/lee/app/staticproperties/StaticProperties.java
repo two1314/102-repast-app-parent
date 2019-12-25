@@ -9,5 +9,10 @@ package com.aaa.lee.app.staticproperties;
 public class StaticProperties {
 
     public static final String OK = "OK";
+    //token
+    public static final String TOKEN="token";
+    //订单编号 orderSn
+    public static final String ORDERSN="orderSn";
+
 
 }

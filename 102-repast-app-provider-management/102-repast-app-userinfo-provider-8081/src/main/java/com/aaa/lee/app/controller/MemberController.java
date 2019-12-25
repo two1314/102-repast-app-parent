@@ -36,7 +36,7 @@ public class MemberController {
      *
      *      需要重写微信的登录(在小程序开发工具中重写某一个登录方法)--->把这个结果重新封装成一个实体类
      *
-     * @param []
+     * @param
      * @date 2019/12/19
      * @return java.lang.Boolean
      * @throws 

@@ -31,31 +31,45 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
 
             @Override
             public List<Coupon> selectCoupon(String token) {
-                System.out.println("测试优惠券熔断");
-                return null;
-            }
-
-            @Override
-            public Map<String, Object> selectIntegration(String token) {
-                System.out.println("测试会员积分熔断");
                 return null;
             }
 
             @Override
             public Map<String, Object> updateCoupon(Integer useCount, Long id, String token) {
-                System.out.println("测试修改会员优惠券");
                 return null;
             }
 
+
             @Override
-            public Member getUser(String token) {
-                System.out.println("测试返回用户");
+            public Map<String, Object> selectMoneyDetal(String token) {
+                System.out.println("测试资金详情数据");
                 return null;
             }
 
             @Override
             public Map<String, Object> selectIntegrationHis(String token) {
-                System.out.println("测试用户使用积分记录");
+                return null;
+            }
+
+            @Override
+            public Member getUser(String token) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> selectIntegration(String token) {
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> selectOrder(String token) {
+                System.out.println("我的订单");
+                return null;
+            }
+
+            @Override
+            public Map<String, Object> selectOrderDefatl(String token,String orderSn) {
+                System.out.println("订单详情数据");
                 return null;
             }
         };

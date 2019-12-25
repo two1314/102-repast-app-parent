@@ -24,7 +24,7 @@ public class IntegrationController extends BaseController {
     private IRepastService repastService;
 
     /**
-     *
+     *查询用户积分
      * @param token
      * @return
      */

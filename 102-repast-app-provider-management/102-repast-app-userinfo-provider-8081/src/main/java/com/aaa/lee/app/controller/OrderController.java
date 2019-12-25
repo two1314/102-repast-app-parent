@@ -20,9 +20,8 @@ public class OrderController {
      */
     @PostMapping("/selectOrder")
     public Map<String, Object> selectOrder(@RequestParam("token")String token) {
-
-       //return orderService.selectOrder(token);
-        return orderService.selectTestOrder(token);
+        return orderService.selectOrder(token);
+        //return orderService.selectTestOrder(token);
     }
 
     /**
