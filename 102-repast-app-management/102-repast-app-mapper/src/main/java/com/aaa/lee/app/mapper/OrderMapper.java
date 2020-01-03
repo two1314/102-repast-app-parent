@@ -17,4 +17,5 @@ public interface OrderMapper extends Mapper<Order> {
      * @return
      */
     public Integer count(String token);
+
 }

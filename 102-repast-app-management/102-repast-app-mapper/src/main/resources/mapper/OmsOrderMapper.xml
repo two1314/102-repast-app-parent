@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.aaa.lee.app.model.Order" >
+<mapper namespace="com.aaa.lee.app.mapper.OmsOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lee.app.model.OmsOrder" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -52,10 +52,10 @@
     <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <select id="count" resultType="java.lang.Integer">
-    select count(*) from ums_member m left join oms_order o
-    on  m.id=o.member_id where token=#{token} and o.status=4
+  <select id="selectOrder" resultMap="BaseResultMap">
+    SELECT id ,payment_time,total_amount FROM oms_order  where member_id=#{id}
   </select>
 
-
+  <select id="selectMyOrder" resultMap="BaseResultMap">
+  </select>
 </mapper>

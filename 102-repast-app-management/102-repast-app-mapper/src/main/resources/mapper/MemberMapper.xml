@@ -30,6 +30,20 @@
     <result column="session_key" property="sessionKey" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
   </resultMap>
+<!--vo的配置-->
+  <resultMap id="MyOrder" type="com.aaa.lee.app.vo.MyOrderVo" extends="BaseResultMap">
+    <collection property="orders" ofType="com.aaa.lee.app.model.OmsOrder" >
+      <id column="id" property="id"></id>
+      <result column="order_sn" property="orderSn"></result>
+      <result column="status" property="status"></result>
+      <result column="total_amount" property="totalAmount"></result>
+      <result column="payment_time" property="paymentTime"></result>
+      <result column="note" property="note"></result>
+    </collection>
+  </resultMap>
+  <select id="selectId" resultMap="MyOrder">
+   select a.order_sn,a.status,a.total_amount,a.payment_time,a.note from oms_order a inner join ums_member b on a.member_id=b.id  where member_id=#{id}
+ </select>
   <update id="updateByOpenId">
         update ums_member set token=#{token} where open_id=#{openId}
   </update>

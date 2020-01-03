@@ -11,5 +11,10 @@ public class StaticProperties {
     public static final String OK = "OK";
     //第一次收藏的状态  0代表取消收藏 1代表已收藏
     public static final Long COLLECT_STATUS = 1L;
+    //token
+    public static final String TOKEN="token";
+    //订单编号 orderSn
+    public static final String ORDERSN="orderSn";
+
 
 }

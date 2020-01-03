@@ -37,7 +37,7 @@ public interface IRepastService {
     Map<String,Object> doLogin(@RequestBody Member member);
 
     /**
-     * 通过token查询优惠券熔断
+     * 通过token查询会员熔断
      * @param token
      * @return
      */
@@ -125,15 +125,14 @@ public interface IRepastService {
      */
     @PostMapping("/updateCoupon")
     public Map<String, Object> updateCoupon(@RequestParam("useCount")Integer useCount, @RequestParam("id") Long id, @RequestParam("token")String token);
-
     /**
-     * 通过token返回用户对象
+     *
+     * 查询资金明细所有数据
      * @param token
      * @return
      */
-    @PostMapping("/getUser")
-    Member getUser(@RequestParam("token") String token);
-
+    @PostMapping("/selectMoneyDetal")
+    public Map<String,Object> selectMoneyDetal(@RequestParam("token") String token);
 
     /**
      * 查询用户使用积分记录
@@ -142,5 +141,43 @@ public interface IRepastService {
      */
     @PostMapping("/selectIntegrationHis")
     public Map<String,Object>selectIntegrationHis(@RequestParam("token") String token);
+
+    /**
+     * 查询用户的积分数
+     * @param token
+     * @return
+     */
+    /**
+     * 通过token返回用户对象
+     * @param token
+     * @return
+     */
+    @PostMapping("/getUser")
+    Member getUser(@RequestParam("token") String token);
+    /**
+     * 查询用户的积分数
+     * @param token
+     * @return
+     */
+    @PostMapping("/selectIntegration")
+    public Map<String,Object> selectIntegration(@RequestParam("token")String token);
+    /**
+     * 查询我的订单
+     * @param token
+     * @return
+     */
+    @PostMapping("/selectOrder")
+    public Map<String, Object> selectOrder(@RequestParam("token")String token);
+
+    /**
+     * 查看订单详情
+     * @param token
+     * @param orderSn
+     * @return
+     */
+    @PostMapping("/selectOrderDefatl")
+    public Map<String ,Object> selectOrderDefatl(@RequestParam("token")String token,@RequestParam("orderSn")String orderSn);
+
+
 
 }
