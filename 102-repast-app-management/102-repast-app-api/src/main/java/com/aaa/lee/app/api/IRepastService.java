@@ -1,10 +1,8 @@
 package com.aaa.lee.app.api;
 
+import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.fallback.RepastFallback;
-import com.aaa.lee.app.model.Collect;
-import com.aaa.lee.app.model.Coupon;
-import com.aaa.lee.app.model.Member;
-import com.aaa.lee.app.model.MemberReceiveAddress;
+import com.aaa.lee.app.model.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -109,14 +107,6 @@ public interface IRepastService {
 
 
     /**
-     * 查询用户的积分数熔断
-     * @param token
-     * @return
-     */
-    @PostMapping("/selectIntegration")
-    public Map<String,Object> selectIntegration(@RequestParam("token")String token);
-
-    /**
      *修改优惠用户的优惠券
      * @param useCount
      * @param id
@@ -178,6 +168,6 @@ public interface IRepastService {
     @PostMapping("/selectOrderDefatl")
     public Map<String ,Object> selectOrderDefatl(@RequestParam("token")String token,@RequestParam("orderSn")String orderSn);
 
-
-
+    @PostMapping("/addLoginLog")
+    void addLoginLog(LoginLog loginLog);
 }

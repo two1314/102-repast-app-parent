@@ -33,6 +33,22 @@ public class BaseController {
     /**
      * @author Seven Lee
      * @description
+     *      统一返回值，查询成功，使用系统消息返回
+     * @param []
+     * @date 2019/12/18
+     * @return com.aaa.lee.app.base.ResultData
+     * @throws
+     **/
+    protected ResultData selectSuccess() {
+        ResultData resultData = new ResultData();
+        resultData.setCode(LoginStatus.SELECT_SUCCESS.getCode());
+        resultData.setMsg(LoginStatus.SELECT_FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @author Seven Lee
+     * @description
      *      统一返回值，登录成功，自定义返回消息
      * @param []
      * @date 2019/12/18

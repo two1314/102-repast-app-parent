@@ -16,6 +16,6 @@
     <result column="source_type" property="sourceType" jdbcType="INTEGER" />
   </resultMap>
 <select id="selectIntegrationHis" resultMap="BaseResultMap">
-  select change_count from ums_integration_change_history where member_id=#{id} and h.use_status=0
+  select change_count from ums_integration_change_history where member_id=#{id}
 </select>
 </mapper>

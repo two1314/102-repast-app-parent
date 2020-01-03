@@ -1,7 +1,9 @@
 package com.aaa.lee.app.service;
 
 import com.aaa.lee.app.base.BaseService;
+import com.aaa.lee.app.mapper.LoginLogMapper;
 import com.aaa.lee.app.mapper.MemberMapper;
+import com.aaa.lee.app.model.LoginLog;
 import com.aaa.lee.app.model.Member;
 import com.aaa.lee.app.utils.IDUtil;
 import com.aaa.lee.app.utils.StringUtil;
@@ -25,6 +27,8 @@ public class MemberService extends BaseService<Member> {
 
     @Autowired
     private MemberMapper memberMapper;
+    @Autowired
+    private LoginLogMapper loginLogMapper;
 
     @Override
     public Mapper<Member> getMapper() {
@@ -80,6 +84,19 @@ public class MemberService extends BaseService<Member> {
     }
 
 
+    /**
+     * 添加登录日志
+     * @param loginLog
+     * @return
+     */
+    public Boolean addLoginLog(LoginLog loginLog){
+        Boolean ifSuccess = false;
+        int insertResult = loginLogMapper.insert(loginLog);
+        if(insertResult > 0) {
+            ifSuccess = true;
+        }
+        return ifSuccess;
+    }
     /**
      * 通过token返回用户对象
      * @param token

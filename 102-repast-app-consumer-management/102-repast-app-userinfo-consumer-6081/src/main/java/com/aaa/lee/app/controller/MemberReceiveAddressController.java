@@ -4,6 +4,7 @@ import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.BaseController;
 import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.model.MemberReceiveAddress;
+import com.aaa.lee.app.status.StatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class MemberReceiveAddressController extends BaseController {
     public ResultData selectAddress(String token){
         if (repastService.selectAddress(token) != null){
             //查询成功
-            return success();
+            return success(repastService.selectAddress(token), StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }

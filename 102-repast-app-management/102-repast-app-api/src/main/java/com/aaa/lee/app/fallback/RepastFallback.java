@@ -2,10 +2,7 @@ package com.aaa.lee.app.fallback;
 
 import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.ResultData;
-import com.aaa.lee.app.model.Collect;
-import com.aaa.lee.app.model.Coupon;
-import com.aaa.lee.app.model.Member;
-import com.aaa.lee.app.model.MemberReceiveAddress;
+import com.aaa.lee.app.model.*;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -74,6 +71,11 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
             public Map<String, Object> selectOrderDefatl(String token,String orderSn) {
                 System.out.println("订单详情数据");
                 return null;
+            }
+
+            @Override
+            public void addLoginLog(LoginLog loginLog) {
+
             }
 
             @Override

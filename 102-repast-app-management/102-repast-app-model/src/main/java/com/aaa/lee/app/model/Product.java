@@ -16,12 +16,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @Table(name = "pms_product")
 public class Product implements Serializable {
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
 
-@Table(name = "pms_product")
-public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

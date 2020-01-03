@@ -16,7 +16,7 @@ public class LoginLog {
     private Long memberId;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private String createTime;
 
     private String ip;
 
@@ -75,14 +75,14 @@ public class LoginLog {
     /**
      * @return create_time
      */
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
     /**
      * @param createTime
      */
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

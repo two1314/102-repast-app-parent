@@ -13,6 +13,8 @@ public enum  LoginStatus {
 
     LOGIN_SUCCESS("200", "登录成功"),
     LOGIN_FAILED("400", "登录失败"),
+    SELECT_SUCCESS("600","查询成功"),
+    SELECT_FAILED("500","查询失败"),
     USER_EXIST("201", "用户存在"),
     USER_NOT_EXIST("402", "用户不存在"),
     PASSWORD_WRONG("405", "密码错误"),

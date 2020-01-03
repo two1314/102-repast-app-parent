@@ -1,5 +1,6 @@
 package com.aaa.lee.app.controller;
 
+import com.aaa.lee.app.annotation.LoginLogAnnocation;
 import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.BaseController;
 import com.aaa.lee.app.base.ResultData;
@@ -41,6 +42,7 @@ public class MemberController extends BaseController {
     **/
     @PostMapping("/doLogin")
     @ApiOperation(value = "登录", notes = "执行登录操作")
+    @LoginLogAnnocation(operationName = "登录", operationType = "登录操作")
     public ResultData doLogin(Member member) {
         if(repastService.doLogin(member)!=null) {
             // 登录成功

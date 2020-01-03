@@ -1,5 +1,6 @@
 package com.aaa.lee.app.controller;
 
+import com.aaa.lee.app.model.LoginLog;
 import com.aaa.lee.app.model.Member;
 import com.aaa.lee.app.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class MemberController {
         dataMap.get("region");
     }*/
     @PostMapping("/doLogin")
+
     public Map<String, Object> doLogin(@RequestBody Member member) {
         // 调用service
         return memberService.doLogin(member);
@@ -64,6 +66,9 @@ public class MemberController {
 
         return memberService.getUser(token);
     }
-
+    @PostMapping("/addLoginLog")
+    public Boolean addLoginLog(@RequestBody LoginLog loginLog){
+        return memberService.addLoginLog(loginLog);
+    }
 
 }
