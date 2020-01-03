@@ -4,6 +4,7 @@ import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.BaseController;
 import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.model.Collect;
+import com.aaa.lee.app.status.StatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,9 @@ public class CollectController extends BaseController {
      */
     @PostMapping("/savesCollect")
     @ApiOperation(value = "添加", notes = "添加收藏的商品")
-    public ResultData savesCollect(Collect collect){
-        if (null != repastService.savesCollect(collect)){
-            return success(repastService.savesCollect(collect));
+    public ResultData savesCollect(Collect collect,String token){
+        if (null != repastService.savesCollect(collect,token)){
+            return success(repastService.savesCollect(collect,token), StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -57,11 +58,26 @@ public class CollectController extends BaseController {
      */
     @PostMapping("/updateCollectStatus")
     @ApiOperation(value = "根据id取消", notes = "根据id取消已收藏的商品")
-    public ResultData updateCollectStatus(Long id){
-        if (null != repastService.updateCollectStatus(id)){
-            return success(repastService.updateCollectStatus(id));
+    public ResultData updateCollectStatus(Long id,String token){
+        if (null != repastService.updateCollectStatus(id,token)){
+            return success(repastService.updateCollectStatus(id,token));
         }
         return failed();
     }
+
+    /**
+     * 查询出下架的商品 然后再将其移除收藏表
+     * @param token
+     * @return
+     */
+    @PostMapping("/deleteProductDrop")
+    @ApiOperation(value = "移除下架商品", notes = "查询出下架的商品 然后再将其移除收藏表")
+    public ResultData deleteProductDrop(String token){
+        if (null != repastService.deleteProductDrop(token)){
+            return success();
+        }
+        return failed();
+    }
+
 
 }

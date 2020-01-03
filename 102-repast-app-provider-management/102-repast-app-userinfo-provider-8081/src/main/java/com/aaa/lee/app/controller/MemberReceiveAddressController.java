@@ -23,9 +23,9 @@ public class MemberReceiveAddressController {
      * @return
      */
     @PostMapping("/selectAddress")
-    public ResultData<List<MemberReceiveAddress>> selectAddress(){
+    public ResultData<List<MemberReceiveAddress>> selectAddress(@RequestParam("token") String token){
         //调用service的查询所有地址的方法
-        return memberReceiveAddressService.selectAddress();
+        return memberReceiveAddressService.selectAddress(token);
     }
 
     /**
@@ -34,9 +34,9 @@ public class MemberReceiveAddressController {
      * @return
      */
     @PostMapping("/saveOrUpdateAddress")
-    public Map<String, Object> saveOrUpdateAddress(@RequestBody MemberReceiveAddress memberReceiveAddress){
+    public Map<String, Object> saveOrUpdateAddress(@RequestBody MemberReceiveAddress memberReceiveAddress,@RequestParam("token") String token){
         //调用service的保存或修改会员地址的方法
-        return memberReceiveAddressService.saveOrUpdateAddress(memberReceiveAddress);
+        return memberReceiveAddressService.saveOrUpdateAddress(memberReceiveAddress,token);
     }
 
     /**
@@ -45,8 +45,8 @@ public class MemberReceiveAddressController {
      * @return
      */
     @PostMapping("/findAddressByMemberId")
-    public Map<String,Object> findAddressByMemberId(@RequestParam("memberId") Long memberId){
-        return memberReceiveAddressService.findAddressByMemberId(memberId);
+    public Map<String,Object> findAddressByMemberId(@RequestParam("memberId") Long memberId,@RequestParam("token") String token){
+        return memberReceiveAddressService.findAddressByMemberId(memberId,token);
     }
 
     /**
@@ -55,8 +55,8 @@ public class MemberReceiveAddressController {
      * @return
      */
     @PostMapping("/deleteAddress")
-    public Map<String,Object> deleteAddress(@RequestParam("id") Long id){
-        return memberReceiveAddressService.deleteAddress(id);
+    public Map<String,Object> deleteAddress(@RequestParam("id") Long id,@RequestParam("token") String token){
+        return memberReceiveAddressService.deleteAddress(id,token);
     }
 
 
@@ -68,8 +68,8 @@ public class MemberReceiveAddressController {
      * @return
      */
     @PostMapping("/updateAddressStatus")
-    public Map<String,Object> updateAddressStatus(@RequestParam("id") Long id){
-        return memberReceiveAddressService.updateAddressStatus(id);
+    public Map<String,Object> updateAddressStatus(@RequestParam("id") Long id,@RequestParam("memberId") Long memberId,@RequestParam("token") String token){
+        return memberReceiveAddressService.updateAddressStatus(id,memberId,token);
     }
 
 }

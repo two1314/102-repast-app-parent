@@ -33,7 +33,7 @@ public class Collect implements Serializable {
     private Long status;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private String createTime;
 
 
 }

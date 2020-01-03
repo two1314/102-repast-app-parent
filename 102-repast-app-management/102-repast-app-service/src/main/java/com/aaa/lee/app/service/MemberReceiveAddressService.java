@@ -30,7 +30,7 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
      * 查询会员所有的收货地址
      * @return
      */
-    public ResultData<List<MemberReceiveAddress>> selectAddress(){
+    public ResultData<List<MemberReceiveAddress>> selectAddress(String token){
 
         ResultData<List<MemberReceiveAddress>> resultData = new ResultData<>();
         //查询数据库中所有的会员地址信息
@@ -53,7 +53,7 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
      * 保存或修改会员收货地址
      * @return
      */
-    public Map<String,Object> saveOrUpdateAddress(MemberReceiveAddress memberReceiveAddress){
+    public Map<String,Object> saveOrUpdateAddress(MemberReceiveAddress memberReceiveAddress,String token){
 
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -91,7 +91,7 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
      * @param memberId
      * @return
      */
-    public Map<String,Object> findAddressByMemberId(Long memberId){
+    public Map<String,Object> findAddressByMemberId(Long memberId,String token){
         Map<String, Object> resultMap = new HashMap<>();
         MemberReceiveAddress memberReceiveAddress = memberReceiveAddressMapper.selectByPrimaryKey(memberId);
         if (StringUtil.isNotEmpty(memberReceiveAddress.getMemberId().toString())){
@@ -111,7 +111,7 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
      * @param id
      * @return
      */
-    public Map<String,Object> deleteAddress(Long id){
+    public Map<String,Object> deleteAddress(Long id,String token){
         Map<String, Object> resultMap = new HashMap<>();
         if (null != id){
             int count = memberReceiveAddressMapper.deleteAddress(id);
@@ -132,14 +132,17 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
      * @param id
      * @return
      */
-    public Map<String,Object> updateAddressStatus(Long id){
+    public Map<String,Object> updateAddressStatus(Long id,Long memberId,String token){
         Map<String, Object> resultMap = new HashMap<>();
-        if (null != id){
-            int count = memberReceiveAddressMapper.updateAddressStatus(id);
-            if (count != 1){
-                resultMap.put("code",StatusEnum.FAILED.getCode());
-                resultMap.put("msg",StatusEnum.FAILED.getMsg());
-                return resultMap;
+        if (null != memberId){
+            int i = memberReceiveAddressMapper.updateAllAddressStatus(memberId);
+            if (i > 0){
+                int count = memberReceiveAddressMapper.updateAddressStatus(id);
+                    if (count != 1){
+                    resultMap.put("code",StatusEnum.FAILED.getCode());
+                    resultMap.put("msg",StatusEnum.FAILED.getMsg());
+                        return resultMap;
+                }
             }
         }
         return resultMap;

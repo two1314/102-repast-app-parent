@@ -29,6 +29,14 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
                 return null;
             }
 
+
+            @Override
+            public Boolean addLoginLog(LoginLog loginLog) {
+                System.out.println("测试登录日志熔断数据");
+                return null;
+
+            }
+
             @Override
             public List<Coupon> selectCoupon(String token) {
                 return null;
@@ -73,10 +81,6 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
                 return null;
             }
 
-            @Override
-            public void addLoginLog(LoginLog loginLog) {
-
-            }
 
             @Override
             public ResultData<List<MemberReceiveAddress>> selectAddress(String token) {
@@ -85,43 +89,55 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
             }
 
             @Override
-            public Map<String, Object> saveOrUpdateAddress(MemberReceiveAddress memberReceiveAddress) {
+            public Map<String, Object> saveOrUpdateAddress(MemberReceiveAddress memberReceiveAddress, String token) {
                 System.out.println("测试保存或修改会员收货地址熔断数据");
                 return null;
             }
 
             @Override
-            public Map<String, Object> findAddressByMemberId(Long memberId) {
+            public Map<String, Object> findAddressByMemberId(Long memberId, String token) {
                 System.out.println("测试根据会员id查询收货地址熔断数据");
                 return null;
             }
 
             @Override
-            public Map<String, Object> deleteAddress(Long id) {
+            public Map<String, Object> deleteAddress(Long id, String token) {
                 System.out.println("测试根据id删除收货地址熔断数据");
                 return null;
             }
 
             @Override
-            public Map<String, Object> updateAddressStatus(Long id) {
+            public Map<String, Object> updateAddressStatus(Long id, Long memberId, String token) {
                 System.out.println("测试根据id会员地址的是否为默认地址熔断数据");
                 return null;
             }
 
             @Override
             public Map<String, Object> selectCollectMemberId(String token) {
+                System.out.println("测试根据会员id查询已收藏的商品");
                 return null;
             }
 
             @Override
-            public Map<String, Object> savesCollect(Collect collect) {
+            public Map<String, Object> savesCollect(Collect collect, String token) {
+                System.out.println("测试添加收藏的商品");
                 return null;
             }
 
             @Override
-            public Map<String, Object> updateCollectStatus(Long id) {
+            public Map<String, Object> updateCollectStatus(Long id, String token) {
+                System.out.println("测试根据id取消已收藏的商品");
                 return null;
             }
+
+            @Override
+            public Map<String, Object> deleteProductDrop(String token) {
+                System.out.println("测试查询出下架的商品 然后再将其移除收藏表");
+                return null;
+            }
+
+            /**
+             */
         };
     }
 }

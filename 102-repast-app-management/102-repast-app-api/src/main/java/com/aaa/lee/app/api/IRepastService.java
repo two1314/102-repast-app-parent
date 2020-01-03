@@ -40,7 +40,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/selectCoupon")
-    public List<Coupon> selectCoupon(@RequestParam("token")String token);
+    List<Coupon> selectCoupon(@RequestParam("token")String token);
 
     /***
      * 地址查询熔断数据
@@ -55,7 +55,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/saveOrUpdateAddress")
-    Map<String, Object> saveOrUpdateAddress(@RequestBody MemberReceiveAddress memberReceiveAddress);
+    Map<String, Object> saveOrUpdateAddress(@RequestBody MemberReceiveAddress memberReceiveAddress,@RequestParam("token") String token);
 
     /**
      * 根据id查询会员收货地址
@@ -63,7 +63,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/findAddressByMemberId")
-    Map<String, Object> findAddressByMemberId(@RequestParam("memberId") Long memberId);
+    Map<String, Object> findAddressByMemberId(@RequestParam("memberId") Long memberId,@RequestParam("token") String token);
 
     /**
      * 根据id删除会员收货地址
@@ -71,7 +71,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/deleteAddress")
-    Map<String,Object> deleteAddress(@RequestParam("id") Long id);
+    Map<String,Object> deleteAddress(@RequestParam("id") Long id,@RequestParam("token") String token);
 
     /**
      * 根据id修改会员地址的是否为默认地址
@@ -79,7 +79,8 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/updateAddressStatus")
-    Map<String,Object> updateAddressStatus(@RequestParam("id") Long id);
+    Map<String,Object> updateAddressStatus(@RequestParam("id") Long id,@RequestParam("memberId") Long memberId,@RequestParam("token") String token);
+
 
     /**
      * 根据会员id查询已收藏的商品
@@ -95,7 +96,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/savesCollect")
-    Map<String,Object> savesCollect(@RequestBody Collect collect);
+    Map<String,Object> savesCollect(@RequestBody Collect collect,@RequestParam("token") String token);
 
     /**
      * 根据id取消已收藏的商品
@@ -103,7 +104,15 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/updateCollectStatus")
-    Map<String,Object> updateCollectStatus(@RequestParam("id") Long id);
+    Map<String,Object> updateCollectStatus(@RequestParam("id") Long id,@RequestParam("token") String token);
+
+    /**
+     * 查询出下架的商品 然后再将其移除收藏表
+     * @param token
+     * @return
+     */
+    @PostMapping("/deleteProductDrop")
+    Map<String,Object> deleteProductDrop(@RequestParam("token") String token);
 
 
     /**
@@ -114,7 +123,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/updateCoupon")
-    public Map<String, Object> updateCoupon(@RequestParam("useCount")Integer useCount, @RequestParam("id") Long id, @RequestParam("token")String token);
+    Map<String, Object> updateCoupon(@RequestParam("useCount")Integer useCount, @RequestParam("id") Long id, @RequestParam("token")String token);
     /**
      *
      * 查询资金明细所有数据
@@ -122,7 +131,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/selectMoneyDetal")
-    public Map<String,Object> selectMoneyDetal(@RequestParam("token") String token);
+    Map<String,Object> selectMoneyDetal(@RequestParam("token") String token);
 
     /**
      * 查询用户使用积分记录
@@ -130,7 +139,7 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/selectIntegrationHis")
-    public Map<String,Object>selectIntegrationHis(@RequestParam("token") String token);
+    Map<String,Object>selectIntegrationHis(@RequestParam("token") String token);
 
     /**
      * 查询用户的积分数
@@ -150,14 +159,14 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/selectIntegration")
-    public Map<String,Object> selectIntegration(@RequestParam("token")String token);
+    Map<String,Object> selectIntegration(@RequestParam("token")String token);
     /**
      * 查询我的订单
      * @param token
      * @return
      */
     @PostMapping("/selectOrder")
-    public Map<String, Object> selectOrder(@RequestParam("token")String token);
+    Map<String, Object> selectOrder(@RequestParam("token")String token);
 
     /**
      * 查看订单详情
@@ -166,8 +175,12 @@ public interface IRepastService {
      * @return
      */
     @PostMapping("/selectOrderDefatl")
-    public Map<String ,Object> selectOrderDefatl(@RequestParam("token")String token,@RequestParam("orderSn")String orderSn);
+    Map<String ,Object> selectOrderDefatl(@RequestParam("token")String token,@RequestParam("orderSn")String orderSn);
 
+    /**
+     * 会员登录日志
+     * @param loginLog
+     */
     @PostMapping("/addLoginLog")
-    void addLoginLog(LoginLog loginLog);
+    Boolean addLoginLog(LoginLog loginLog);
 }

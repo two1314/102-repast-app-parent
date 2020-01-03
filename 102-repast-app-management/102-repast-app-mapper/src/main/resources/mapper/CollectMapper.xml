@@ -12,17 +12,26 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
+  <select id="selectProductDrop" resultMap="BaseResultMap">
+    select c.* from collect c inner join pms_product p on c.product_id=p.id where p.publish_status = 0;
+  </select>
+
+  <update id="updateCollectDrop">
+    update collect set status=0 where id = #{id};
+  </update>
+
   <select id="selectCollectMemberId" resultMap="BaseResultMap">
     select * from collect where status = 1 and member_id = #{member_id}
   </select>
 
   <insert id="savesCollect">
-    insert into collect (member_id,product_id,status,create_time) values(#{member_id},#{product_id},status,create_time)
+    insert into collect (member_id,product_id,status,create_time) values(#{member_id},#{product_id},1,create_time)
   </insert>
 
   <update id="updateCollectStatus">
     update collect set status = 0 where member_id = #{member_id}
   </update>
+
 
 
 </mapper>

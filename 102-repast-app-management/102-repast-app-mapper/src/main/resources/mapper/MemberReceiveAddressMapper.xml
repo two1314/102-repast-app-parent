@@ -16,9 +16,14 @@
     <result column="region" property="region" jdbcType="VARCHAR" />
     <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
   </resultMap>
+
   <delete id="deleteAddress">
-    delete from ums_member_receive_address where id = #{id} and member_id = #{member_id}
+    delete from ums_member_receive_address where id = #{id}
   </delete>
+
+  <update id="updateAllAddressStatus">
+    update ums_member_receive_address set default_status = 0 where member_id = #{member_id}
+  </update>
 
   <update id="updateAddressStatus">
     update ums_member_receive_address set default_status = 1 where id = #{id}

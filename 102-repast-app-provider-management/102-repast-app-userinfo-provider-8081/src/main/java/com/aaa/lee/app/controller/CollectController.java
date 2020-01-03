@@ -31,8 +31,8 @@ public class CollectController {
      * @return
      */
     @PostMapping("/savesCollect")
-    public Map<String,Object> savesCollect(@RequestBody Collect collect){
-        return collectService.savesCollect(collect);
+    public Map<String,Object> savesCollect(@RequestBody Collect collect,@RequestParam("token") String token){
+        return collectService.savesCollect(collect,token);
     }
 
 
@@ -41,8 +41,17 @@ public class CollectController {
      * @return
      */
     @PostMapping("/updateCollectStatus")
-    public Map<String,Object> updateCollectStatus(@RequestParam("id") Long id){
+    public Map<String,Object> updateCollectStatus(@RequestParam("id") Long id,@RequestParam("token") String token){
+        return collectService.updateCollectStatus(id,token);
+    }
 
-        return collectService.updateCollectStatus(id);
+    /**
+     * 查询出下架的商品 然后再将其移除收藏表
+     * @param token
+     * @return
+     */
+    @PostMapping("/deleteProductDrop")
+    public Map<String,Object> deleteProductDrop(@RequestParam("token") String token){
+        return collectService.deleteProductDrop(token);
     }
 }
