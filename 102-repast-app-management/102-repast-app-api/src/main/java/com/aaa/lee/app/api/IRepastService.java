@@ -1,8 +1,10 @@
 package com.aaa.lee.app.api;
 
 import com.aaa.lee.app.fallback.RepastFallback;
+import com.aaa.lee.app.model.Collect;
 import com.aaa.lee.app.model.Coupon;
 import com.aaa.lee.app.model.Member;
+import com.aaa.lee.app.model.MemberReceiveAddress;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +43,69 @@ public interface IRepastService {
      */
     @PostMapping("/selectCoupon")
     public List<Coupon> selectCoupon(@RequestParam("token")String token);
+
+    /***
+     * 地址查询熔断数据
+     * @return
+     */
+    @PostMapping("/selectAddress")
+    ResultData<List<MemberReceiveAddress>> selectAddress(@RequestParam("token") String token);
+
+    /**
+     * 保存或修改会员收货地址
+     * @param memberReceiveAddress
+     * @return
+     */
+    @PostMapping("/saveOrUpdateAddress")
+    Map<String, Object> saveOrUpdateAddress(@RequestBody MemberReceiveAddress memberReceiveAddress);
+
+    /**
+     * 根据id查询会员收货地址
+     * @param memberId
+     * @return
+     */
+    @PostMapping("/findAddressByMemberId")
+    Map<String, Object> findAddressByMemberId(@RequestParam("memberId") Long memberId);
+
+    /**
+     * 根据id删除会员收货地址
+     * @param id
+     * @return
+     */
+    @PostMapping("/deleteAddress")
+    Map<String,Object> deleteAddress(@RequestParam("id") Long id);
+
+    /**
+     * 根据id修改会员地址的是否为默认地址
+     * @param id
+     * @return
+     */
+    @PostMapping("/updateAddressStatus")
+    Map<String,Object> updateAddressStatus(@RequestParam("id") Long id);
+
+    /**
+     * 根据会员id查询已收藏的商品
+     * @param token
+     * @return
+     */
+    @PostMapping("/selectCollectMemberId")
+    Map<String,Object> selectCollectMemberId(@RequestParam("token") String token);
+
+    /**
+     * 添加收藏的商品
+     * @param collect
+     * @return
+     */
+    @PostMapping("/savesCollect")
+    Map<String,Object> savesCollect(@RequestBody Collect collect);
+
+    /**
+     * 根据id取消已收藏的商品
+     * @param id
+     * @return
+     */
+    @PostMapping("/updateCollectStatus")
+    Map<String,Object> updateCollectStatus(@RequestParam("id") Long id);
 
 
     /**

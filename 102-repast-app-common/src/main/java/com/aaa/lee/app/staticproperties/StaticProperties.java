@@ -9,5 +9,7 @@ package com.aaa.lee.app.staticproperties;
 public class StaticProperties {
 
     public static final String OK = "OK";
+    //第一次收藏的状态  0代表取消收藏 1代表已收藏
+    public static final Long COLLECT_STATUS = 1L;
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lee.app.mapper.CollectMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lee.app.model.Collect" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="selectCollectMemberId" resultMap="BaseResultMap">
+    select * from collect where status = 1 and member_id = #{member_id}
+  </select>
+
+  <insert id="savesCollect">
+    insert into collect (member_id,product_id,status,create_time) values(#{member_id},#{product_id},status,create_time)
+  </insert>
+
+  <update id="updateCollectStatus">
+    update collect set status = 0 where member_id = #{member_id}
+  </update>
+
+
+</mapper>
