@@ -3,6 +3,7 @@ package com.aaa.lee.app.fallback;
 import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.model.*;
+import com.aaa.lee.app.vo.FileCommentVo;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,24 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
                 System.out.println("测试登录日志熔断数据");
                 return null;
 
+            }
+
+            @Override
+            public ResultData selectAll(Long memberId) {
+                System.out.println("测试查询我的评价熔断数据");
+                return null;
+            }
+
+            @Override
+            public ResultData listAllComment(Long productId) {
+                System.out.println("测试查看商品id熔断数据");
+                return null;
+            }
+
+            @Override
+            public ResultData insertComment(FileCommentVo fileCommentVo) {
+                System.out.println("测试添加评价熔断数据");
+                return null;
             }
 
             @Override

@@ -3,6 +3,7 @@ package com.aaa.lee.app.api;
 import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.fallback.RepastFallback;
 import com.aaa.lee.app.model.*;
+import com.aaa.lee.app.vo.FileCommentVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -183,4 +184,25 @@ public interface IRepastService {
      */
     @PostMapping("/addLoginLog")
     Boolean addLoginLog(LoginLog loginLog);
+
+    /**
+     * 查询我的评价
+     */
+    @PostMapping("/selectComment")
+    ResultData selectAll(@RequestParam("memberId") Long memberId);
+
+    /**
+     * 查看商品id
+     * @param productId
+     * @param
+     * @return
+     */
+    @PostMapping("/listAllComment")
+    ResultData listAllComment(@RequestParam("productId") Long productId);
+    /**
+     * 添加评价
+     */
+    @PostMapping("/insertComment")
+    ResultData insertComment(@RequestBody FileCommentVo fileCommentVo);
+
 }
