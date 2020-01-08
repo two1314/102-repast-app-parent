@@ -16,7 +16,7 @@ public interface CollectMapper extends Mapper<Collect> {
      * @param memberId
      * @return
      */
-     Collect selectCollectMemberId(Long memberId);
+     List<Collect> selectCollectMemberId(Long memberId);
 
 
     /**

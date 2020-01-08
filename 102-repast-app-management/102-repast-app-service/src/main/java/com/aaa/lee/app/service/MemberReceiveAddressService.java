@@ -87,14 +87,14 @@ public class MemberReceiveAddressService extends BaseService<MemberReceiveAddres
     }
 
     /**
-     * 根据会员id查询会员收货地址
-     * @param memberId
+     * 根据id查询会员收货地址
+     * @param id
      * @return
      */
-    public Map<String,Object> findAddressByMemberId(Long memberId,String token){
+    public Map<String,Object> findAddressByMemberId(Long id,String token){
         Map<String, Object> resultMap = new HashMap<>();
-        MemberReceiveAddress memberReceiveAddress = memberReceiveAddressMapper.selectByPrimaryKey(memberId);
-        if (StringUtil.isNotEmpty(memberReceiveAddress.getMemberId().toString())){
+        MemberReceiveAddress memberReceiveAddress = memberReceiveAddressMapper.selectByPrimaryKey(id);
+        if (StringUtil.isNotEmpty(memberReceiveAddress.getId().toString())){
             resultMap.put("code",StatusEnum.EXIST.getCode());
             resultMap.put("msg",StatusEnum.EXIST.getMsg());
             resultMap.put("data",memberReceiveAddress);

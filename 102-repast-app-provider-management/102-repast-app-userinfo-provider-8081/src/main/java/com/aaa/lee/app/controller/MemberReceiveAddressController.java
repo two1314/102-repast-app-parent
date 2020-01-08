@@ -40,13 +40,13 @@ public class MemberReceiveAddressController {
     }
 
     /**
-     * 根据会员id查询会员收货地址
+     * 根据id查询会员收货地址
      * @param
      * @return
      */
     @PostMapping("/findAddressByMemberId")
-    public Map<String,Object> findAddressByMemberId(@RequestParam("memberId") Long memberId,@RequestParam("token") String token){
-        return memberReceiveAddressService.findAddressByMemberId(memberId,token);
+    public Map<String,Object> findAddressByMemberId(@RequestParam("id") Long id,@RequestParam("token") String token){
+        return memberReceiveAddressService.findAddressByMemberId(id,token);
     }
 
     /**

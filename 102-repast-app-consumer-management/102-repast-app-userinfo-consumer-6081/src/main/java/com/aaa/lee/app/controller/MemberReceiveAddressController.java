@@ -4,6 +4,7 @@ import com.aaa.lee.app.api.IRepastService;
 import com.aaa.lee.app.base.BaseController;
 import com.aaa.lee.app.base.ResultData;
 import com.aaa.lee.app.model.MemberReceiveAddress;
+import com.aaa.lee.app.status.StatusEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class MemberReceiveAddressController extends BaseController {
     public ResultData selectAddress(String token){
         if (repastService.selectAddress(token) != null){
             //查询成功
-            return success(repastService.selectAddress(token) != null);
+            return success(repastService.selectAddress(token),StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -45,22 +46,22 @@ public class MemberReceiveAddressController extends BaseController {
     public ResultData savaOrUpdateAddress(MemberReceiveAddress memberReceiveAddress,String token){
         Map<String, Object> resultMap = repastService.saveOrUpdateAddress(memberReceiveAddress,token);
         if (null != resultMap){
-            return success();
+            return success(StatusEnum.SUCCESS.getMsg());
         }
         return failed();
 
     }
 
     /**
-     * 根据会员id查询会员收货地址
-     * @param memberId
+     * 根据id查询会员收货地址
+     * @param id
      * @return
      */
     @PostMapping("/findAddressByMemberId")
     @ApiOperation(value = "根据id查询", notes = "根据id查询会员收货地址")
-    public ResultData findAddressByMemberId(Long memberId,String token){
-        if (null != repastService.findAddressByMemberId(memberId,token)){
-            return success(repastService.findAddressByMemberId(memberId,token));
+    public ResultData findAddressByMemberId(Long id,String token){
+        if (null != repastService.findAddressByMemberId(id,token)){
+            return success(repastService.findAddressByMemberId(id,token),StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -75,7 +76,7 @@ public class MemberReceiveAddressController extends BaseController {
     @ApiOperation(value = "根据id删除", notes = "根据id删除会员收货地址")
     public ResultData deleteAddress(Long id,String token){
         if (null != repastService.deleteAddress(id,token)){
-            return success();
+            return success(StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -93,7 +94,7 @@ public class MemberReceiveAddressController extends BaseController {
     @ApiOperation(value = "修改默认状态", notes = "根据id修改会员地址的是否为默认地址")
     public ResultData updateAddressStatus(@RequestParam("id") Long id, @RequestParam("memberId") Long memberId, @RequestParam("token") String token){
         if (null != repastService.updateAddressStatus(id,memberId,token)){
-            return success(repastService.updateAddressStatus(id,memberId,token));
+            return success(repastService.updateAddressStatus(id,memberId,token),StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }

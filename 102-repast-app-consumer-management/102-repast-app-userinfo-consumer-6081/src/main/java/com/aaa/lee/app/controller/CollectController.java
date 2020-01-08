@@ -32,7 +32,7 @@ public class CollectController extends BaseController {
         if (repastService.selectAddress(token) != null){
             Map<String, Object> map = repastService.selectCollectMemberId(token);
             //查询成功
-            return success(map);
+            return success(map,StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -60,7 +60,7 @@ public class CollectController extends BaseController {
     @ApiOperation(value = "根据id取消", notes = "根据id取消已收藏的商品")
     public ResultData updateCollectStatus(Long id,String token){
         if (null != repastService.updateCollectStatus(id,token)){
-            return success(repastService.updateCollectStatus(id,token));
+            return success(repastService.updateCollectStatus(id,token),StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }
@@ -74,7 +74,7 @@ public class CollectController extends BaseController {
     @ApiOperation(value = "移除下架商品", notes = "查询出下架的商品 然后再将其移除收藏表")
     public ResultData deleteProductDrop(String token){
         if (null != repastService.deleteProductDrop(token)){
-            return success();
+            return success(StatusEnum.SUCCESS.getMsg());
         }
         return failed();
     }

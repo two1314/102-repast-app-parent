@@ -29,7 +29,7 @@
   </insert>
 
   <update id="updateCollectStatus">
-    update collect set status = 0 where member_id = #{member_id}
+    update collect set status = 0 where id = #{id}
   </update>
 
 

@@ -24,7 +24,7 @@ public class CommentController extends BaseController {
      * @return
      */
     @PostMapping("/selectComment")
-    @ApiOperation(value = "查看评价", notes = "查看个人评价")
+    @ApiOperation(value = "查看个人评价", notes = "查看个人评价")
     public ResultData selectAll(Long memberId){
         return repastService.selectAll(memberId);
     }

@@ -46,22 +46,19 @@ public class CollectService extends BaseService<Collect> {
             Member memberOne = memberMapper.selectOne(member.setToken(token));
             if (null != memberOne.getId() && !"".equals(memberOne.getId())) {
                 //查出收藏表的memberId
-                Collect collect = collectMapper.selectCollectMemberId(memberOne.getId());
-                if (!"".equals(collect.getProductId()) && collect.getProductId() != null) {
-                    //根据商品id查询出所有的商品
+                List<Collect> collects = collectMapper.selectCollectMemberId(memberOne.getId());
+                //根据商品id查询出所有的商品
+
+                for (Collect collect : collects) {
                     Product product = productMapper.listAll(collect.getProductId());
                     if (!"".equals(product) && product != null) {
                         resultMap.put("code", StatusEnum.SUCCESS.getCode());
                         resultMap.put("msg", StatusEnum.SUCCESS.getMsg());
                         resultMap.put("data", product);
-                        return resultMap;
                     } else {
                         resultMap.put("code", StatusEnum.FAILED.getCode());
                         resultMap.put("msg", StatusEnum.FAILED.getMsg());
                     }
-                } else {
-                    resultMap.put("code", StatusEnum.FAILED.getCode());
-                    resultMap.put("msg", StatusEnum.FAILED.getMsg());
                 }
             } else {
                 resultMap.put("code", StatusEnum.FAILED.getCode());

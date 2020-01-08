@@ -20,8 +20,11 @@
   <delete id="deleteAddress">
     delete from ums_member_receive_address where id = #{id}
   </delete>
+    <select id="findAddressByMemberId" resultType="com.aaa.lee.app.model.MemberReceiveAddress">
+      select * from ums_member_receive_address where member_id = #{member_id}
+    </select>
 
-  <update id="updateAllAddressStatus">
+    <update id="updateAllAddressStatus">
     update ums_member_receive_address set default_status = 0 where member_id = #{member_id}
   </update>
 

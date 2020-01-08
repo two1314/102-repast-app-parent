@@ -30,8 +30,6 @@ public class CommentController extends BaseController {
     public ResultData selectAll(@RequestParam("memberId") Long memberId){
         List<MyCommentVo> myCommentVos = commentService.listMyComment(memberId);
         if (myCommentVos.size()>0){
-            //StatusEnum.SUCCESS.getCode(),StatusEnum.EXIST.getMsg(),myCommentVos
-            //StatusEnum.FAILED.getCode(),StatusEnum.NOT_EXIST.getMsg()
             return super.success(myCommentVos,StatusEnum.EXIST.getMsg());
         }else {
             return super.failed(StatusEnum.NOT_EXIST.getMsg());
@@ -69,6 +67,11 @@ public class CommentController extends BaseController {
     }
 
 
+    /**
+     * 图片上传
+     * @param file
+     * @return
+     */
     @PostMapping(value = "/upPicture",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResultData upPicture(@RequestParam("file") MultipartFile file){
         String upPicture = commentService.upPicture(file);

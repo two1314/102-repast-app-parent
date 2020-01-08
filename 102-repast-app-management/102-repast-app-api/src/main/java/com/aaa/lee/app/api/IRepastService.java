@@ -60,11 +60,11 @@ public interface IRepastService {
 
     /**
      * 根据id查询会员收货地址
-     * @param memberId
+     * @param id
      * @return
      */
     @PostMapping("/findAddressByMemberId")
-    Map<String, Object> findAddressByMemberId(@RequestParam("memberId") Long memberId,@RequestParam("token") String token);
+    Map<String, Object> findAddressByMemberId(@RequestParam("id") Long id,@RequestParam("token") String token);
 
     /**
      * 根据id删除会员收货地址

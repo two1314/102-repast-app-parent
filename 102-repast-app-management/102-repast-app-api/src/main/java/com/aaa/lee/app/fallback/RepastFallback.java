@@ -114,7 +114,7 @@ public class RepastFallback implements FallbackFactory<IRepastService> {
             }
 
             @Override
-            public Map<String, Object> findAddressByMemberId(Long memberId, String token) {
+            public Map<String, Object> findAddressByMemberId(Long id, String token) {
                 System.out.println("测试根据会员id查询收货地址熔断数据");
                 return null;
             }

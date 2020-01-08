@@ -11,6 +11,14 @@ public interface MemberReceiveAddressMapper extends Mapper<MemberReceiveAddress>
     int deleteAddress(Long id);
 
     /**
+     * 根据会员id查询会员收货地址
+     * @param memberId
+     * @return
+     */
+    MemberReceiveAddress findAddressByMemberId(Long memberId);
+
+
+    /**
      * 根据memberId修改会员地址的全部为不默认地址
      * @param memberId
      * @return
